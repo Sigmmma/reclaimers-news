@@ -1,4 +1,7 @@
 # Reclaimers news publisher
+
+![](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiVHFKR1lFaE5zYjZDZnJvaVFhMWFwM1pudzRoNlhKR1RQbkh0eU05aEVvbG9yS2l6UnJxQzBuc2dkVTc5K2RDQ3FQK0pSN21Pa1NSeWJVdGlrZy92TXZ3PSIsIml2UGFyYW1ldGVyU3BlYyI6IjU0eW5OQ3o4SllvWTJkRG4iLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+
 This project implements an automated task which scans Halo CE-related RSS feeds and posts new items to the Reclaimers Discord server via webhook.
 
 ## Running with Node
@@ -27,7 +30,7 @@ npm ci
 
 # See usage and run commands
 node news.js --help
-# rRun in full dryrun mode
+# Run in full dryrun mode
 node news.js --nosend --nosave
 # Run in production mode
 node news.js
