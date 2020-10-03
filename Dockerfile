@@ -11,10 +11,8 @@ COPY package-lock.json .
 RUN npm ci
 RUN apk del npm
 
-# copy the app sources over
-COPY commands commands
-COPY reclaimers.js .
+# copy the app sources and config over
+COPY news.js .
+COPY sources.yml .
 
-EXPOSE 8080
-ENTRYPOINT ["node", "reclaimers.js"]
-CMD ["--help"]
+ENTRYPOINT ["node", "news.js"]

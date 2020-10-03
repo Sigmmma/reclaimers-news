@@ -1,43 +1,48 @@
-# Reclaimers API services
-This project will host API services and automated jobs for the Reclaimers community.
-
-Possible features
-* RSS checker for posting new map/asset releases to the announcements Discord channel
-* An API that can be used to get the status of a running Halo server
+# Reclaimers news publisher
+This project implements an automated task which scans Halo CE-related RSS feeds and posts new items to the Reclaimers Discord server via webhook.
 
 ## Running with Node
-To run locally with Node directly, which is recommended during development:
+To run locally with Node directly, which is recommended during development, you will need a `sources.yml` file in the working directory with the following structure:
 
-```sh
-# install dependencies
-npm ci
-
-# see usage and run commands
-node reclaimers.js --help
-node reclaimers.js releases --dryrun
-node reclaimers.js server --port 9001
+```yml
+# A list of sources
+sources:
+    # A unique key for this source used for message idempotency
+  - id: openCarnageAssets
+    # The RSS source URL to scan
+    url: https://opencarnage.net/index.php?/forum/68-halo-ce-asset-releases.xml/
+    # The emoji used in the published message
+    icon: ":gear:"
+    # A title to include in the message related to this source
+    title: Asset released on OpenCarnage
+    # Generated within Discord for a certain channel
+    webhookUrl: https://discordapp.com/api/webhooks/<webhook id>/<webhook token>
 ```
 
-## Running with Docker
-This project contains a Dockerfile which describes the system dependencies the application has (nodejs) and automates the creation of an image which can be run with Docker. This is well-suited for managed container hosting where you don't want to maintain a full server.
+You will also need to configure [environment variables](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html) to authenticate with the AWS account containing the Dynamo idempotency table. Any user with read and write permissions to the table will do.
+
+```sh
+# Install dependencies
+npm ci
+
+# See usage and run commands
+node news.js --help
+# rRun in full dryrun mode
+node news.js --nosend --nosave
+# Run in production mode
+node news.js
+```
+
+## Building the Docker image
+This project contains a Dockerfile which describes the system dependencies the application has (nodejs) and automates the creation of an image which can be run with Docker. This is well-suited for managed container hosting, but not necessary for local development. The build assumes you have a `sources.yml` in the project directory.
 
 ```sh
 # Build the image
-docker build -t reclaimers-svc .
-
-# Run the image and see usage
-docker run --read-only --rm \
-  reclaimers-svc:latest \
-  --help
-
-# Run the server mode, mapping container port 8080 to local port 8080
-docker run --read-only --rm --name recsvc -d -p 8080:8080 \
-  reclaimers-svc:latest \
-  server
-
-# Check that it's running
-docker ps
-
-# Kill the running container
-docker kill recsvc
+docker build -t reclaimers-news .
+# Run the image with arguments
+docker run --read-only --rm reclaimers-news:latest --help
+# Run the image in production mode
+docker run --read-only --rm reclaimers-news:latest
 ```
+
+When run as an ECS task, its IAM role is granted permission to read and write from the idempotency table so environment variables do not need to be baked into the image.

@@ -2,11 +2,15 @@
   "name": "reclaimers-svc",
   "version": "1.0.0",
   "description": "Web services for the Reclaimers Discord group.",
-  "main": "server.js",
+  "main": "news.js",
   "author": "Sigmmma",
   "license": "GPLv3",
   "dependencies": {
-    "express": "^4.17.1",
-    "yargs": "^16.0.3"
+    "argparse": "^2.0.1",
+    "aws-sdk": "^2.762.0",
+    "js-yaml": "^3.14.0",
+    "limiter": "^1.1.5",
+    "node-fetch": "^2.6.1",
+    "rss-parser": "^3.9.0"
   }
 }
