@@ -1,6 +1,6 @@
 {
   "name": "reclaimers-svc",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Web services for the Reclaimers Discord group.",
   "main": "news.js",
   "author": "Sigmmma",
