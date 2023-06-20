@@ -1,6 +1,6 @@
 # Reclaimers news publisher
 
-![](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiVHFKR1lFaE5zYjZDZnJvaVFhMWFwM1pudzRoNlhKR1RQbkh0eU05aEVvbG9yS2l6UnJxQzBuc2dkVTc5K2RDQ3FQK0pSN21Pa1NSeWJVdGlrZy92TXZ3PSIsIml2UGFyYW1ldGVyU3BlYyI6IjU0eW5OQ3o4SllvWTJkRG4iLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+![](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoicUw2b1ZoTDBnYTNyc215aVB1UUE3elRxOUpsUE5MRk5YcHRaVzc4emdZRis1anRwbVA4MkNBMEIzWmNwSmFVQk4xUmNnb1JEc2d3M1BjUUxGakV5eTJjPSIsIml2UGFyYW1ldGVyU3BlYyI6Ik1tMXFPOVJxMTFLT1FIZ2wiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 
 This project implements an automated task which scans Halo modding-related RSS feeds and posts new items to the Reclaimers Discord server via webhook.
 
