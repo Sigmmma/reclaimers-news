@@ -1,0 +1,61 @@
+webhooks:
+  default: KMS:AQICAHjHuhsIVTDz1PtZQjqZXjfUmqTp6zhZC2SyfzNv2sBUewF88bu+5n/R+/papTCet0wbAAAA3jCB2wYJKoZIhvcNAQcGoIHNMIHKAgEAMIHEBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDLo3aw0mkMvSa5JYygIBEICBliqBAGjbilIq0U8NSlCJe+aajdZYygXd5ZbmiCSLpYD/EX17aDjhdoRLeU9CXxof82iDWXYjtuacDjUUsLLAoonBJUiQ2lRbhKsYi5d313VhEILxxJA0gmhbSYhKe0dHlSdVyFH/TIzzpRBzZxR9MqwrELSNWWTPs5YvUVKXpdBgVDaBfm9VoTRREv87jC54J0NuAPb+SQ==
+sources:
+  - id: openCarnageAssets
+    url: https://opencarnage.net/index.php?/forum/68-halo-ce-asset-releases.xml/
+    icon: ":gear:"
+    title: Asset released on OpenCarnage
+  - id: openCarnageMaps
+    url: https://opencarnage.net/index.php?/forum/67-halo-ce-map-releases.xml/
+    icon: ":file_folder:"
+    title: Map released on OpenCarnage
+  - id: openCarnageMapsMcc
+    url: https://opencarnage.net/index.php?/forum/56-halo-mcc-map-releases.xml/
+    icon: ":file_folder:"
+    title: Map released on OpenCarnage
+  - id: openCarnageUtils
+    url: https://opencarnage.net/index.php?/forum/79-halo-ce-utility-releases.xml/
+    icon: ":gear:"
+    title: New utility on OpenCarnage
+  - id: openCarnageModTools
+    url: https://opencarnage.net/index.php?/forum/65-halo-ce-modding-tools.xml/
+    icon: ":gear:"
+    title: New tool on OpenCarnage
+  - id: openCarnageDev
+    url: https://opencarnage.net/index.php?/forum/66-halo-ce-development.xml/
+    icon: ":newspaper:"
+    title: New development topic on OpenCarnage
+  - id: ce3
+    url: https://haloce3.com/feed/
+    icon: ":file_folder:"
+    title: New file on CE3
+  - id: modDbArticles
+    url: https://rss.moddb.com/games/halo-combat-evolved/articles/feed/rss.xml
+    icon: ":newspaper:"
+    title: New article on ModDB
+  - id: modDbArticlesMcc
+    url: https://rss.moddb.com/games/halo-the-master-chief-collection/articles/feed/rss.xml
+    icon: ":newspaper:"
+    title: New article on ModDB
+  - id: modDbDownloads
+    url: https://rss.moddb.com/games/halo-combat-evolved/downloads/feed/rss.xml
+    icon: ":file_folder:"
+    title: New file on ModDB
+  - id: modDbDownloadsMcc
+    url: https://rss.moddb.com/games/halo-the-master-chief-collection/downloads/feed/rss.xml
+    icon: ":file_folder:"
+    title: New file on ModDB
+  - id: nexusMods
+    url: https://www.nexusmods.com/halo/rss/newtoday
+    icon: ":file_folder:"
+    title: New file on Nexus Mods
+  - id: nexusModsMcc
+    url: https://www.nexusmods.com/halothemasterchiefcollection/rss/newtoday
+    icon: ":file_folder:"
+    title: New file on Nexus Mods
+# RIP
+# - id: halomaps
+#   url: http://hce.halomaps.org/rss.cfm
+#   icon: ":file_folder:"
+#   title: New file on Halo Maps
+#   

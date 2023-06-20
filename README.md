@@ -2,13 +2,16 @@
 
 ![](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiVHFKR1lFaE5zYjZDZnJvaVFhMWFwM1pudzRoNlhKR1RQbkh0eU05aEVvbG9yS2l6UnJxQzBuc2dkVTc5K2RDQ3FQK0pSN21Pa1NSeWJVdGlrZy92TXZ3PSIsIml2UGFyYW1ldGVyU3BlYyI6IjU0eW5OQ3o4SllvWTJkRG4iLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 
-This project implements an automated task which scans Halo CE-related RSS feeds and posts new items to the Reclaimers Discord server via webhook.
+This project implements an automated task which scans Halo modding-related RSS feeds and posts new items to the Reclaimers Discord server via webhook.
 
-## Running with Node
-To run locally with Node directly, which is recommended during development, you will need a `sources.yml` file in the working directory with the following structure:
+## Configuring
+The bot is configured with `sources.yml`:
 
 ```yml
-# A list of sources
+# Webhooks specify which channels can be published to
+webhooks:
+  default: KMS:ABC123
+# A list of sources to scan
 sources:
     # A unique key for this source used for message idempotency
   - id: openCarnageAssets
@@ -18,12 +21,37 @@ sources:
     icon: ":gear:"
     # A title to include in the message related to this source
     title: Asset released on OpenCarnage
-    # Generated within Discord for a certain channel
-    webhookUrl: https://discordapp.com/api/webhooks/<webhook id>/<webhook token>
+    # An optional webhook to use, defaults to "default"
+    webhook: default
 ```
 
-You will also need to configure [environment variables](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html) to authenticate with the AWS account containing the Dynamo idempotency table. Any user with read and write permissions to the table will do.
+Webhook values are generated within Discord and look like `https://discordapp.com/api/webhooks/<webhook id>/<webhook token>`. Howerver, these are secret values and we don't want just anyone to be able to post messages to our channel, we need to encrypt the webhook URL against a KMS key which only this app can decrypt. Use `./encrypt.sh <url>` to generate a new ciphertext.
 
+## Development
+In AWS, the service runs with a task role which has permission to access DynamoDB and KMS. Without authorization you will not be able to run it locally. The way we do this is to configure some AWS profiles:
+
+In `~/.aws/config`:
+```
+[profile reclaimers-news-task]
+region = us-east-1
+role_arn = arn:aws:iam::413062193480:role/news-task
+source_profile = reclaimers-dev-news
+```
+
+In `~/.aws/credentials`, put the credentials for the `dev-news` IAM user:
+```
+[reclaimers-dev-news]
+aws_access_key_id = ...
+aws_secret_access_key = ...
+```
+
+Finally, set these environment variables:
+```sh
+export AWS_REGION=us-east-1
+export AWS_PROFILE=reclaimers-news-task
+```
+
+Next, we can install dependencies and run the scanner:
 ```sh
 # Install dependencies
 npm ci
